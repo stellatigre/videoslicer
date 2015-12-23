@@ -1,6 +1,6 @@
 {
   "name": "videoslicer",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "slice videos on the command line using ffmpeg thru node",
   "main": "slicer.js",
   "scripts": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/stellatigre/videoslicer#readme",
   "dependencies": {
+    "async": "^1.5.0",
     "commander": "^2.9.0",
     "fluent-ffmpeg": "^2.0.1"
   }
