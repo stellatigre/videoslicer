@@ -12,7 +12,7 @@ function slice(file, duration) {
     ffmpeg.ffprobe(file, (err, data) => {
         var vidLength = data.streams[0].duration;
         var sliceCount = Math.floor(vidLength / duration);
-        console.log(`slicing ${path.basename(file))} into ${sliceCount} slices`);
+        console.log(`slicing ${path.basename(file)} into ${sliceCount} slices`);
         for (var i=0; i < sliceCount; i++) {
             saveSlice(file, i * duration, duration);
         }
