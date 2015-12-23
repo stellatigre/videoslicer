@@ -1,0 +1,27 @@
+{
+  "name": "videoslicer",
+  "version": "0.1.0",
+  "description": "slice videos on the command line using ffmpeg thru node",
+  "main": "slicer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stellatigre/videoslicer.git"
+  },
+  "keywords": [
+    "video",
+    "ffmpeg"
+  ],
+  "author": "Stella Tigre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stellatigre/videoslicer/issues"
+  },
+  "homepage": "https://github.com/stellatigre/videoslicer#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "fluent-ffmpeg": "^2.0.1"
+  }
+}
