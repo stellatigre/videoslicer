@@ -1,5 +1,5 @@
 # videoslicer
-slice videos in node (version `5.x`+) using ffmpeg
+slice videos in node.js (version `5.x`+) using ffmpeg
 
 #### arguments
 supports two command line arguments right now:
