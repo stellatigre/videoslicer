@@ -23,4 +23,4 @@ cli.option('-d, --duration [seconds]', 'length of video slices in seconds')
     .option('-i, --input [file]', 'video input file')
     .parse(process.argv);
 
-slice(cli.input, Int.parse(cli.duration));
+slice(cli.input, parseInt(cli.duration));
