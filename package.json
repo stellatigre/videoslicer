@@ -1,6 +1,6 @@
 {
   "name": "videoslicer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "slice videos on the command line using ffmpeg thru node",
   "main": "slicer.js",
   "scripts": {
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "video",
-    "ffmpeg"
+    "ffmpeg",
+    "videoslice",
+    "VJ"
   ],
   "author": "Stella Tigre",
   "license": "ISC",
