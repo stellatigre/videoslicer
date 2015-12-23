@@ -5,6 +5,8 @@ var async = require('async');
 var cli = require('commander');
 var ffmpeg = require('fluent-ffmpeg');
 
+var videoTypes = ['.mp4', '.mkv', '.avi', '.webm'];
+
 function safeMkdirSync(dir) {
     try { fs.accessSync(dir) }
     catch (e) { fs.mkdirSync(dir) }
@@ -22,7 +24,10 @@ function saveSlice(file, start, length, outDir, callback) {
 }
 
 function handleDirectories(dirPath, duration, callback) {
-    async.eachSeries(fs.readdirSync(dirPath), (item, cb) => {
+    var contents = fs.readdirSync(dirPath).filter((item) => {
+        return videoTypes.indexOf(path.extname(item)) != -1;
+    });
+    async.eachSeries(contents, (item, cb) => {
         slice(path.join(dirPath, item), duration, cb);
     }, callback);
 }
