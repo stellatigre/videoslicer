@@ -16,3 +16,5 @@ slice this input file into 5 second chunks
 -------------------------------
 
 Written & tested originally on my Windows machine, but should work on any of Win / OSX / Linux that has FFMPEG installed properly.
+
+please see https://github.com/fluent-ffmpeg/node-fluent-ffmpeg#prerequisites for guidance on making sure ffmpeg is setup properly for your platform
