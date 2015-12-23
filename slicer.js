@@ -21,18 +21,28 @@ function saveSlice(file, start, length, outDir, callback) {
         });
 }
 
-function slice(file, duration) {
+function handleDirectories(dirPath, duration, callback) {
+    async.eachSeries(fs.readdirSync(dirPath), (item, cb) => {
+        slice(path.join(dirPath, item), duration, cb);
+    }, callback);
+}
+
+function slice(file, duration, callback) {
+    if(fs.lstatSync(file).isDirectory()) {
+        handleDirectories(file, duration, callback);
+        return;
+    }
     var extension = path.extname(file);
     var outputDir = path.basename(file).replace(extension, '') + ' slices';
     safeMkdirSync(outputDir);
     ffmpeg.ffprobe(file, (err, data) => {
         var vidLength = data.streams[0].duration;
         var sliceCount = Math.floor(vidLength / duration);
-        renderSlices(file, duration, sliceCount, outputDir);
+        renderSlices(file, duration, sliceCount, outputDir, callback);
     });
 }
 
-function renderSlices(file, duration, sliceCount, outputDir) {
+function renderSlices(file, duration, sliceCount, outputDir, callback) {
     console.log(`slicing ${path.basename(file)} into ${sliceCount} slices`);
     var sliceRange = Array.apply(0, Array(sliceCount)).map((_, y) => y + 1);
 
@@ -41,7 +51,8 @@ function renderSlices(file, duration, sliceCount, outputDir) {
     async.eachLimit(sliceRange, os.cpus().length, (i, cb) => {
         saveSlice(file, i * duration, duration, outputDir, cb);
     }, () => {
-        console.log("done!");
+        console.log(`rendered all ${path.basename(file)} slices`);
+        if(callback) callback();
     });
 }
 
