@@ -41,7 +41,7 @@ function slice(file, duration, callback) {
     var outputDir = path.basename(file).replace(extension, '') + ' slices';
     safeMkdirSync(outputDir);
     ffmpeg.ffprobe(file, (err, data) => {
-        var vidLength = data.streams[0].duration;
+        var vidLength = data.format.duration;
         var sliceCount = Math.floor(vidLength / duration);
         renderSlices(file, duration, sliceCount, outputDir, callback);
     });
